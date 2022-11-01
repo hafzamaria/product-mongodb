@@ -16,10 +16,11 @@
 
     <div class="main">
 
-        <div class="start">
-    <h1>Signup Form</h1>
-    <p class="para">please fill in this form to create an account!</p>
-   </div>
+      
+    <h1>Add a product</h1>
+
+      <a href="./index.html">Home</a>
+      <a href="./products.html">All products</a>
 
     <form onsubmit="product(); return false ">
         <div class="names">
@@ -45,9 +46,9 @@
     </form>
 
     <p id="message"></p>
-    <h1>All Products</h1>
-    <button onClick="getAllProducts()" type="submit">getAllProducts</button>
-    <div id="Allproducts"></div>
+    
+    <!-- <button onClick="getAllProducts()" type="submit">getAllProducts</button> -->
+   
 </div>
 
 
@@ -85,24 +86,24 @@ let description = document.querySelector('#description').value;
 
 
  
-function getAllProducts() {
+// function getAllProducts() {
 
-axios.get('http://localhost:5000/products')
-    .then(function (response) {
-        console.log(response.data);
+// axios.get('http://localhost:5000/products')
+//     .then(function (response) {
+//         console.log(response.data);
 
-        response.data.map((eachProduct) => {
-            document.querySelector("#Allproducts").innerHTML +=
-                `${eachProduct.name} ${eachProduct.price} - ${eachProduct.code} ${eachProduct.description}<br>`
-        })
+//         response.data.map((eachProduct) => {
+//             document.querySelector("#Allproducts").innerHTML +=
+//                 `${eachProduct.name} ${eachProduct.price} - ${eachProduct.code} ${eachProduct.description}<br>`
+//         })
 
-    })
-    .catch(function (error) {
-        console.log(error.response.data);
-        document.querySelector("#message").innerHTML = error.response.data.message;
-    });
-}
-getAllProducts();
+//     })
+//     .catch(function (error) {
+//         console.log(error.response.data);
+//         document.querySelector("#message").innerHTML = error.response.data.message;
+//     });
+// }
+// getAllProducts();
 
 
 

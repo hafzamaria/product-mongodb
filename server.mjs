@@ -4,7 +4,7 @@ import mongoose from 'mongoose';
 
 
 
- let dbURI ='mongodb+srv://abcd:abcd@cluster0.0nsp7aq.mongodb.net/mySocialMediaBase?retryWrites=true&w=majority';
+ let dbURI ='mongodb+srv://abcd:abcd@cluster0.0nsp7aq.mongodb.net/myProductBase?retryWrites=true&w=majority';
 mongoose.connect(dbURI);
 
 const app = express();

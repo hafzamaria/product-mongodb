@@ -1,0 +1,52 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+</head>
+
+<body>
+<h1>Ali Express</h1>
+<a href="./index.html">Home</a>
+<a href="./products.html">All products</a>
+<div id="Allproducts"></div>
+<script>
+
+function getAllProducts() {
+
+axios.get('http://localhost:5000/products')
+    .then(function (response) {
+        console.log(response.data);
+
+        response.data.map((eachProduct) => {
+            document.querySelector("#Allproducts").innerHTML +=
+                `${eachProduct.name} ${eachProduct.price} - ${eachProduct.code} ${eachProduct.description}<br>`
+        })
+
+    })
+    .catch(function (error) {
+        console.log(error.response.data);
+        document.querySelector("#message").innerHTML = error.response.data.message;
+    });
+}
+getAllProducts();
+
+
+
+
+
+
+</script>
+
+
+
+
+</body>
+</html>
