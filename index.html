@@ -1,0 +1,122 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+</head>
+
+<body>
+
+    <div class="main">
+
+        <div class="start">
+    <h1>Signup Form</h1>
+    <p class="para">please fill in this form to create an account!</p>
+   </div>
+
+    <form onsubmit="product(); return false ">
+        <div class="names">
+        <label for="name">ProductName:</label>
+        <input type="text" id="name" placeholder="name:" required>
+        <br>
+
+        <label for="price">Price:</label>
+        <input type="text" id="price" placeholder="price" >
+        <br>
+      </div>
+        <label for="code">Code:</label>
+        <input class="in1" type="code" id="code" required>
+        <br>
+
+        <label for="description">Description:</label>
+        <input class="in1" type="description" id="description" placeholder="Password:" required>
+        <br>
+
+        
+        <button class="but" type="submit">Add Product</button>
+      
+    </form>
+
+    <p id="message"></p>
+    <h1>All Products</h1>
+    <button onClick="getAllProducts()" type="submit">getAllProducts</button>
+    <div id="Allproducts"></div>
+</div>
+<!-- <div class="link">
+    Already have an account?<a href="./login.html">Login here</a>
+    </div> -->
+    <br>
+    <br>
+
+<script>
+
+const product=()=> {
+
+let name = document.querySelector('#name').value;
+let price = document.querySelector('#price').value;
+let code = document.querySelector('#code').value;
+let description = document.querySelector('#description').value;
+
+    axios.post(' http://localhost:5000/product', {
+
+   name,
+   price,
+   code,
+   description
+
+})
+    .then(function (response) {
+        console.log(response.data);
+        document.querySelector("#message").innerHTML = response.data.message;
+    })
+    .catch(function (error) {
+        console.log(error.response.data);
+        document.querySelector("#message").innerHTML = error.response.data.message;
+    });
+}
+
+
+ 
+
+
+
+
+ 
+function getAllProducts() {
+
+axios.get('http://localhost:5000/products')
+    .then(function (response) {
+        console.log(response.data);
+
+        response.data.map((eachProduct) => {
+            document.querySelector("#Allproducts").innerHTML +=
+                `${eachProduct.name} ${eachProduct.price} - ${eachProduct.code} ${eachProduct.description}<br>`
+        })
+
+    })
+    .catch(function (error) {
+        console.log(error.response.data);
+        document.querySelector("#message").innerHTML = error.response.data.message;
+    });
+}
+getAllProducts();
+
+
+
+
+
+
+</script>
+
+
+
+
+</body>
+</html>
